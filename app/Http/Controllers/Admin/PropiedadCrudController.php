@@ -8,7 +8,6 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Http\Requests\PropiedadRequest as StoreRequest;
 use App\Http\Requests\PropiedadRequest as UpdateRequest;
 use Backpack\CRUD\CrudPanel;
-
 /**
  * Class PropiedadCrudController
  * @package App\Http\Controllers\Admin
@@ -25,7 +24,7 @@ class PropiedadCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\Propiedad');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/propiedad');
-        $this->crud->setEntityNameStrings('propiedad', 'propiedads');
+        $this->crud->setEntityNameStrings('propiedad', 'propiedades');
 
         /*
         |--------------------------------------------------------------------------
@@ -34,7 +33,81 @@ class PropiedadCrudController extends CrudController
         */
 
         // TODO: remove setFromDb() and manually define Fields and Columns
-        $this->crud->setFromDb();
+//        $this->crud->setFromDb();
+        $this->crud->setColumns([
+            [
+                'name' => 'nombre',
+                'label' => 'Nombre',
+                'type' => 'text',
+            ],
+            [
+                'name' => 'costo',
+                'label' => 'Costo',
+                'type' => 'text',
+            ],
+            [
+                'name' => 'descripcion',
+                'label' => 'Descripcion',
+                'type' => 'text',
+            ],
+            [
+                'name' => 'provincia_id',
+                'label' => 'Provincia',
+                'type' => 'number',
+            ]
+        ]);
+
+        $this->crud->addFields([
+            [
+                'label' => 'Nombre',
+                'type' => "text",
+                'name' => 'nombre',
+            ],
+            [
+                'label' => 'Costo',
+                'type' => 'number',
+                'name' => 'costo'
+            ],
+            [
+                'label' => 'Descripción',
+                'type' => 'textarea',
+                'name' => 'descripcion'
+            ],
+            [
+                'label' => 'Tamaño de Construcción',
+                'type' => 'number',
+                'name' => 'tamano_construccion'
+            ],
+            [   // Address
+                'name' => 'localizacion',
+                'label' => 'Dirección',
+                'type' => 'text'
+            ],
+            [
+                'label' => 'Provincia',
+                'type' => "select",
+                'name' => 'provincia_id',
+                'entity' => 'propiedades',
+                'attribute' => "provincia",
+                'model' => "App\Models\Provincia"
+            ],
+            [
+                'label' => 'Imagen',
+                'type' => 'image',
+                'name' => 'image',
+                'upload' => true,
+                'crop' => true,
+                'aspect_ratio' => 1,
+            ],
+            [
+                'name' => 'avaluo',
+                'label' => 'Avaluo',
+                'type' => 'upload',
+                'upload' => true,
+                'disk' => 'uploads' // if you store files in the /public folder, please ommit this; if you store them in /storage or S3, please specify it;
+            ],
+
+        ]);
 
         // add asterisk for fields that are required in PropiedadRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
