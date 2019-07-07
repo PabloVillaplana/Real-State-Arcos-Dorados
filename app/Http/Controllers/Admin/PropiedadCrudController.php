@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Propiedad;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\PropiedadRequest as StoreRequest;
 use App\Http\Requests\PropiedadRequest as UpdateRequest;
 use Backpack\CRUD\CrudPanel;
+
+
 /**
  * Class PropiedadCrudController
  * @package App\Http\Controllers\Admin
@@ -78,6 +81,11 @@ class PropiedadCrudController extends CrudController
                 'type' => 'number',
                 'name' => 'tamano_construccion'
             ],
+            [
+                'label' => 'Tamaño de Terreno',
+                'type' => 'number',
+                'name' => 'tamano_terreno'
+            ],
             [   // Address
                 'name' => 'localizacion',
                 'label' => 'Dirección',
@@ -97,21 +105,36 @@ class PropiedadCrudController extends CrudController
                 'name' => 'image',
                 'upload' => true,
                 'crop' => true,
-                'aspect_ratio' => 1,
             ],
-            [
-                'name' => 'avaluo',
-                'label' => 'Avaluo',
-                'type' => 'upload',
-                'upload' => true,
-                'disk' => 'uploads' // if you store files in the /public folder, please ommit this; if you store them in /storage or S3, please specify it;
-            ],
+//            [
+//                'name' => 'avaluo',
+//                'label' => 'Avaluo',
+//                'type' => 'upload',
+//                'upload' => true,
+//                'disk' => 'uploads' // if you store files in the /public folder, please ommit this; if you store them in /storage or S3, please specify it;
+//            ],
+//            [
+//                'name' => 'plano',
+//                'label' => 'Plano',
+//                'type' => 'upload',
+//                'upload' => true,
+//                'disk' => 'uploads' // if you store files in the /public folder, please ommit this; if you store them in /storage or S3, please specify it;
+//            ],
 
         ]);
 
         // add asterisk for fields that are required in PropiedadRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
+    }
+
+    public function  ver(){
+
+        $propiedad = Propiedad::all();
+
+//        return route('propiedad.home');
+        return view('propiedades/propiedades', compact('propiedad'));
+
     }
 
     public function store(StoreRequest $request)
@@ -131,4 +154,6 @@ class PropiedadCrudController extends CrudController
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;
     }
+
+
 }
