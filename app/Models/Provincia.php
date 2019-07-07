@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Propiedad;
+use Backpack\CRUD\CrudTrait;
 
 class Provincia extends Model
 {
+    use CrudTrait;
     //
+    protected $table = 'provincias';
     protected $fillable = [
         'id','provincia'
     ];

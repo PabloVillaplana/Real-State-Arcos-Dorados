@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Propiedad;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
@@ -95,7 +94,7 @@ class PropiedadCrudController extends CrudController
                 'label' => 'Provincia',
                 'type' => "select",
                 'name' => 'provincia_id',
-                'entity' => 'propiedades',
+                'entity' => 'provincia',
                 'attribute' => "provincia",
                 'model' => "App\Models\Provincia"
             ],
@@ -132,7 +131,6 @@ class PropiedadCrudController extends CrudController
 
         $propiedad = Propiedad::all();
 
-//        return route('propiedad.home');
         return view('propiedades/propiedades', compact('propiedad'));
 
     }
@@ -153,6 +151,13 @@ class PropiedadCrudController extends CrudController
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;
+    }
+
+    public function details(Propiedad $propiedad)
+    {
+        $propiedad = Propiedad::findOrFail($propiedad);
+
+        return view('propiedades/show', compact('propiedad'));
     }
 
 

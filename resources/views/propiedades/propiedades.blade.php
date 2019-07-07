@@ -1,6 +1,7 @@
 @extends('layouts.home')
 
 @section('content')
+
     <div class="container">
         <h2>Listado de Propiedades</h2>
     </div>
@@ -17,7 +18,7 @@
                         <h3 class="propiedad-title">{{$propiedades->nombre}}</h3>
 
                         <p class="propiedad-description">¢{{ number_format($propiedades->costo)}}</p>
-{{--                        <a class="propiedad-url" href="{{route('propiedad.show', $propiedades)}}">Ver propiedad</a>--}}
+                        <a class="propiedad-url" href="{{route('propiedad.details', $propiedades)}}">Ver propiedad</a>
                     </div>
                 </article>
             @endforeach

@@ -4,8 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
-use App\Models\Provincia;
-use Psy\Util\Str;
 
 class Propiedad extends Model
 {
@@ -41,12 +39,15 @@ class Propiedad extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+
     public function provincia()
     {
         return $this->belongsTo(Provincia::class)->withDefault([
             'provincia' => 'sin provincia'
         ]);
     }
+
+
 
     /*
     |--------------------------------------------------------------------------

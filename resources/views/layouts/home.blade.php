@@ -9,6 +9,7 @@
     <!-- <link rel="stylesheet" href="css/media.css" media="screen and (max-width:768px)"/> -->
     <link rel="stylesheet" href="{{ asset('css/custom.css')  }}">
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Source+Sans+Pro&display=swap" rel="stylesheet">
+
 </head>
 <body>
 <i class="icon-menu burguer-button" id="burguer-menu"></i>

@@ -17,3 +17,5 @@
 
 Route::get('/', 'admin\PropiedadCrudController@ver')->name('propiedad.home');
 
+Route::get('/{propiedad}', 'admin\PropiedadCrudController@details')->name('propiedad.details');
+
