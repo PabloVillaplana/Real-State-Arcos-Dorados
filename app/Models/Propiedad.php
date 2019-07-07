@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
+use App\Models\Provincia;
 
 class Propiedad extends Model
 {
@@ -15,11 +16,14 @@ class Propiedad extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'propiedads';
+    protected $table = 'propiedades';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = [];
+    protected $fillable = [
+        'nombre', 'costo', 'descripcion','provincia_id','image','avaluo','tamano_terreno', 'tamano_construccion','localizacion', 'plano'
+    ];
+
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -34,6 +38,12 @@ class Propiedad extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    public function provincia()
+    {
+        return $this->belongsTo(Provincia::class)->withDefault([
+            'provincia' => 'sin provincia'
+        ]);
+    }
 
     /*
     |--------------------------------------------------------------------------

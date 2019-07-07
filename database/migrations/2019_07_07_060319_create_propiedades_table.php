@@ -19,7 +19,7 @@ class CreatePropiedadesTable extends Migration
             $table->string('nombre')->unique();
             $table->bigInteger('costo');
             $table->string('descripcion');
-//            $table->bigInteger('provincia_id')->unsigned()->nullable();
+            $table->bigInteger('provincia_id')->unsigned()->nullable();
             $table->string('image')->nullable();
             $table->string('localizacion')->nullable();
             $table->string('avaluo')->nullable();
@@ -29,9 +29,9 @@ class CreatePropiedadesTable extends Migration
             $table->timestamps();
         });
 
-//        Schema::table('propiedades', function($table) {
-//            $table->foreign('provincia_id')->references('id')->on('provincias');
-//        });
+        Schema::table('propiedades', function($table) {
+            $table->foreign('provincia_id')->references('id')->on('provincias');
+        });
     }
 
     /**
