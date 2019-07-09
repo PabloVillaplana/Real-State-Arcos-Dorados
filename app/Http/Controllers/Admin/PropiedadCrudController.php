@@ -8,6 +8,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Http\Requests\PropiedadRequest as StoreRequest;
 use App\Http\Requests\PropiedadRequest as UpdateRequest;
 use Backpack\CRUD\CrudPanel;
+use App\Models\Propiedad;
 
 
 /**
@@ -105,13 +106,13 @@ class PropiedadCrudController extends CrudController
                 'upload' => true,
                 'crop' => true,
             ],
-//            [
-//                'name' => 'avaluo',
-//                'label' => 'Avaluo',
-//                'type' => 'upload',
-//                'upload' => true,
-//                'disk' => 'uploads' // if you store files in the /public folder, please ommit this; if you store them in /storage or S3, please specify it;
-//            ],
+            [
+                'name' => 'avaluo',
+                'label' => 'Avaluo',
+                'type' => 'upload',
+                'upload' => true,
+                'disk' => 'uploads'
+            ],
 //            [
 //                'name' => 'plano',
 //                'label' => 'Plano',

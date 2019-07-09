@@ -23,7 +23,7 @@
         <nav class="menu">
             <ol>
                 <li>
-{{--                    <a class="link" href="{{route('propiedad.index')}}">Propiedades</a>--}}
+                    {{--                    <a class="link" href="{{route('propiedad.index')}}">Propiedades</a>--}}
                 </li>
                 {{--                <li>--}}
                 {{--                    <a class="link" href="#eventos">Experencia</a>--}}
@@ -40,6 +40,31 @@
 <div class="container">
     @yield('content')
 </div>
+<section id="contacto" class="contact">
+    <div class="container">
+        <form action="/suscripcion/" class="form-email">
+            <h3>Contacteme</h3>
+            <div>
+                <input type="text" placeholder="Dejame tu email" id="email">
+            </div>
+            <div>
+                <input type="tel" placeholder="Número de Télefono" id="telefono">
+            </div>
+            <div>
+                <textarea id="mensaje">
+                    Mensaje:
+                </textarea>
+            </div>
+            <button type="submit" value="Enviar">Enviar</button>
+        </form>
+        <div class="social">
+            <a href="https://twitter.com/PabloVillaplan" class="social-link twitter"></a>
+            <a href="https://www.facebook.com/pablo.villaplanacorrales" class="social-link facebook"></a>
+            <a href="https://github.com/PabloVillaplana" class="social-link github"></a>
+            <a href="https://www.instagram.com/pablovillaplanac/" class="social-link instagram"></a>
+        </div>
+    </div>
+</section>
 <footer class="footer">
     <div class="container">
         <div>
