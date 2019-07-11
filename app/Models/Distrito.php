@@ -2,25 +2,20 @@
 
 namespace App\Models;
 
-use Backpack\CRUD\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
-
-class Provincia extends Model
+class Distrito extends Model
 {
-    use CrudTrait;
-
     /*
     |--------------------------------------------------------------------------
     | GLOBAL VARIABLES
     |--------------------------------------------------------------------------
     */
-
-    protected $table = 'provincias';
+    protected $table = 'distritos';
     protected $primaryKey = 'codigo';
     public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['codigo', 'nombre'];
+    protected $fillable = ['codigo','canton_codigo', 'nombre'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -53,5 +48,4 @@ class Provincia extends Model
     | MUTATORS
     |--------------------------------------------------------------------------
     */
-
 }

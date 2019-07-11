@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\Provincia;
 
 class ProvinciaSeeder extends Seeder
 {
@@ -11,40 +12,12 @@ class ProvinciaSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('provincias')->insert([
-            'id' => '1',
-            'provincia' => 'San Jose',
-        ]);
-
-        DB::table('provincias')->insert([
-            'id' => '2',
-            'provincia' => 'Alajuela',
-        ]);
-
-        DB::table('provincias')->insert([
-            'id' => '3',
-            'provincia' => 'Cartago',
-        ]);
-
-        DB::table('provincias')->insert([
-            'id' => '4',
-            'provincia' => 'Heredia',
-        ]);
-
-        DB::table('provincias')->insert([
-            'id' => '5',
-            'provincia' => 'Guanacaste',
-        ]);
-
-        DB::table('provincias')->insert([
-            'id' => '6',
-            'provincia' => 'Puntarenas',
-        ]);
-
-        DB::table('provincias')->insert([
-            'id' => '7',
-            'provincia' => 'Limon',
-        ]);
-
+        Provincia::create(['codigo' => '1', 'nombre' => 'San José']);
+        Provincia::create(['codigo' => '2', 'nombre' => 'Alajuela']);
+        Provincia::create(['codigo' => '3', 'nombre' => 'Cartago']);
+        Provincia::create(['codigo' => '4', 'nombre' => 'Heredia']);
+        Provincia::create(['codigo' => '5', 'nombre' => 'Guancaste']);
+        Provincia::create(['codigo' => '6', 'nombre' => 'Puntarenas']);
+        Provincia::create(['codigo' => '7', 'nombre' => 'Limón']);
     }
 }

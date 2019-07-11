@@ -53,11 +53,6 @@ class PropiedadCrudController extends CrudController
                 'label' => 'Descripcion',
                 'type' => 'text',
             ],
-            [
-                'name' => 'provincia_id',
-                'label' => 'Provincia',
-                'type' => 'number',
-            ]
         ]);
 
         $this->crud->addFields([
@@ -92,14 +87,6 @@ class PropiedadCrudController extends CrudController
                 'type' => 'text'
             ],
             [
-                'label' => 'Provincia',
-                'type' => "select",
-                'name' => 'provincia_id',
-                'entity' => 'provincia',
-                'attribute' => "provincia",
-                'model' => "App\Models\Provincia"
-            ],
-            [
                 'label' => 'Imagen',
                 'type' => 'image',
                 'name' => 'image',
@@ -113,6 +100,40 @@ class PropiedadCrudController extends CrudController
                 'upload' => true,
                 'disk' => 'uploads'
             ],
+            [
+                'label' => 'Provincia',
+                'type' => "select2_from_ajax",
+                'name' => 'provincia_codigo', // the column that contains the ID of that connected entity
+                'entity' => 'provincia', // the method that defines the relationship in your Model
+                'attribute' => "nombre", // foreign key attribute that is shown to user
+                'data_source' => url("api/internals/provincia"), // url to controller search function (with /{id} should return model)
+                'placeholder' => 'Seleccione Provincia', // placeholder for the select
+                'minimum_input_length' => 0, // minimum characters to type before querying results
+            ],
+            [
+                'label' => 'Canton',
+                'type' => "select2_from_ajax",
+                'name' => 'canton_codigo', // the column that contains the ID of that connected entity
+                'entity' => 'canton', // the method that defines the relationship in your Model
+                'attribute' => "nombre", // foreign key attribute that is shown to user
+                'data_source' => url("api/internals/canton"), // url to controller search function (with /{id} should return model)
+                'placeholder' => 'Seleccione Cantón', // placeholder for the select
+                'minimum_input_length' => 0, // minimum characters to type before querying results
+                'dependencies' => ['provincia_codigo'], // when a dependency changes, this select2 is reset to null
+                'method'                    => 'GET', // optional - HTTP method to use for the AJAX call (GET, POST)
+            ],
+            [
+                'label' => 'Distrito',
+                'type' => "select2_from_ajax",
+                'name' => 'distrito_codigo', // the column that contains the ID of that connected entity
+                'entity' => 'distrito', // the method that defines the relationship in your Model
+                'attribute' => "nombre", // foreign key attribute that is shown to user
+                'data_source' => url("api/internals/distrito"), // url to controller search function (with /{id} should return model)
+                'placeholder' => 'Seleccione Distrito', // placeholder for the select
+                'minimum_input_length' => 0, // minimum characters to type before querying results
+                'dependencies' => ['canton_codigo'], // when a dependency changes, this select2 is reset to null
+                'method'                    => 'GET', // optional - HTTP method to use for the AJAX call (GET, POST)
+            ]
 //            [
 //                'name' => 'plano',
 //                'label' => 'Plano',
@@ -128,7 +149,8 @@ class PropiedadCrudController extends CrudController
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
     }
 
-    public function  ver(){
+    public function ver()
+    {
 
         $propiedad = Propiedad::all();
 

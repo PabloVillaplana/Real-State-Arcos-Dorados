@@ -39,15 +39,20 @@ class Propiedad extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
     public function provincia()
     {
-        return $this->belongsTo(Provincia::class)->withDefault([
-            'provincia' => 'sin provincia'
-        ]);
+        return $this->belongsTo('App\Models\Provincia');
     }
 
+    public function canton()
+    {
+        return $this->belongsTo('App\Models\Canton');
+    }
 
+    public function distrito()
+    {
+        return $this->belongsTo('App\Models\Distrito');
+    }
 
     /*
     |--------------------------------------------------------------------------
