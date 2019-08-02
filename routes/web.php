@@ -15,6 +15,10 @@
 //    return view('welcome');
 //});
 
+Auth::routes();
+
+Route::get('/home', 'web\PageController@home')->name('home');
+
 Route::get('/', 'admin\PropiedadCrudController@ver')->name('propiedad.home');
 
 Route::get('/{propiedad}', 'admin\PropiedadCrudController@details')->name('propiedad.details');
